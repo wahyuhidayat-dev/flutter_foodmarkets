@@ -6,6 +6,9 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int selectedPage = 0;
+  PageController pageController = PageController(initialPage: 0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,13 +23,37 @@ class _MainPageState extends State<MainPage> {
           )),
           //body area
           SafeArea(
-              child: Center(
-            child: Text('body'),
+              child: PageView(
+            controller: pageController,
+            onPageChanged: (index) {
+              setState(() {
+                selectedPage = index;
+              });
+            },
+            children: [
+              Center(
+                child: FoodPage(),
+              ),
+              Center(
+                child: Text('Order'),
+              ),
+              Center(
+                child: Text('Profile'),
+              ),
+            ],
           )),
           // Navbar
           Align(
             alignment: Alignment.bottomCenter,
-            child: CustomButtonNavbar(),
+            child: CustomButtonNavbar(
+              selectedIndex: selectedPage,
+              onTap: (index) {
+                setState(() {
+                  selectedPage = index;
+                });
+                pageController.jumpToPage(selectedPage);
+              },
+            ),
           ),
         ],
       ),
