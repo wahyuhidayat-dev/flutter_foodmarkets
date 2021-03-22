@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:foodmarket/model/models.dart';
 import 'package:foodmarket/shared/shared.dart';
 import 'package:foodmarket/ui/widget/widgets.dart';
 import 'package:get/get.dart';
